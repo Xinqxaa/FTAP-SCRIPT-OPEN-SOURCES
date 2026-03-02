@@ -1,0 +1,46 @@
+MainTab:CreateToggle({
+    Name = "Anti Loop",
+    CurrentValue = false,
+    Flag = "AntiLoopToggle",
+    Callback = function(Value)
+        if Value then
+
+            getgenv().teleportLocations = {
+                Vector3.new(518.52, 834.62, - 362.38),
+                Vector3.new(566.16, 124.33, - 93.13),
+                Vector3.new(80.63, 346.19, 338.40),
+                Vector3.new(288.70, 447.54, 481.17),
+                Vector3.new(- 331.23, 81.64, 340.15),
+                Vector3.new(- 566.02, - 6.35, 84.20),
+                Vector3.new(- 514.05, - 6.35, - 160.63),
+                Vector3.new(- 215.14, 60.76, - 304.82),
+                Vector3.new(- 338.28, 22.11, 484.03)
+            }
+            
+            getgenv().ultraFastLoopTP = function()
+                while getgenv().AntiLoopEnabled do
+                    local char = player.Character or player.CharacterAdded:Wait()
+                    local hrp = char:WaitForChild("HumanoidRootPart")
+                    
+                    for _, location in ipairs(getgenv().teleportLocations) do
+                        if hrp and getgenv().AntiLoopEnabled then
+                            hrp.CFrame = CFrame.new(location)
+                        end
+                        task.wait(0.08)
+                    end
+                end
+            end
+            
+            getgenv().AntiLoopEnabled = true
+            task.spawn(getgenv().ultraFastLoopTP)
+            player.CharacterAdded:Connect(function()
+                task.wait(0.08)
+                if getgenv().AntiLoopEnabled then
+                    task.spawn(getgenv().ultraFastLoopTP)
+                end
+            end)
+        else
+            getgenv().AntiLoopEnabled = false
+        end
+    end
+})
