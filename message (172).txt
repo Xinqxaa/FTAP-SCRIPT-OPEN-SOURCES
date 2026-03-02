@@ -1,0 +1,244 @@
+ShaderConfig = {
+    shader_en = false,
+    selected_shader = '',
+}
+
+function ApplyShader(ShaderType)
+    local Lighting = game:GetService("Lighting")
+    
+    for _, child in pairs(Lighting:GetChildren()) do
+        if child:IsA("PostEffect") or child:IsA("Sky") or child:IsA("Atmosphere") then
+            child:Destroy()
+        end
+    end
+    
+    Lighting.Brightness = 2
+    Lighting.ExposureCompensation = 0
+    Lighting.ClockTime = 14
+    Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+    Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
+    Lighting.OutdoorAmbient = Color3.fromRGB(200, 200, 200)
+    Lighting.FogColor = Color3.fromRGB(192, 192, 192)
+    Lighting.FogEnd = 100000
+    Lighting.FogStart = 0
+    Lighting.ShadowSoftness = 0
+    Lighting.Ambient = Color3.fromRGB(120, 120, 120)
+    
+    if ShaderType == 'Old' then
+        local Sky = Instance.new('Sky', Lighting)
+        Sky.StarCount = 5000
+        Sky.SunAngularSize = 5
+        
+        local Bloom = Instance.new('BloomEffect', Lighting)
+        Bloom.Intensity = 0.3
+        Bloom.Size = 10
+        Bloom.Threshold = 0.8
+        
+        local Blur = Instance.new('BlurEffect', Lighting)
+        Blur.Size = 5
+        
+        local ColorCorrection = Instance.new('ColorCorrectionEffect', Lighting)
+        ColorCorrection.Brightness = 0
+        ColorCorrection.Contrast = 0.1
+        ColorCorrection.Saturation = 0.25
+        ColorCorrection.TintColor = Color3.fromRGB(255, 255, 255)
+        
+        local SunRays = Instance.new('SunRaysEffect', Lighting)
+        SunRays.Intensity = 0.1
+        SunRays.Spread = 0.8
+        
+        Lighting.Brightness = 2.25
+        Lighting.ExposureCompensation = 0.1
+        Lighting.ClockTime = 17.55
+        
+    elseif ShaderType == 'Purple New' then
+        local Bloom1 = Instance.new('BloomEffect', Lighting)
+        Bloom1.Intensity = 0.1
+        Bloom1.Threshold = 0
+        Bloom1.Size = 100
+        
+        local Sky1 = Instance.new('Sky', Lighting)
+        Sky1.SkyboxUp = 'http://www.roblox.com/asset/?id=196263782'
+        Sky1.SkyboxLf = 'http://www.roblox.com/asset/?id=196263721'
+        Sky1.SkyboxBk = 'http://www.roblox.com/asset/?id=196263721'
+        Sky1.SkyboxFt = 'http://www.roblox.com/asset/?id=196263721'
+        Sky1.CelestialBodiesShown = false
+        Sky1.SkyboxDn = 'http://www.roblox.com/asset/?id=196263643'
+        Sky1.SkyboxRt = 'http://www.roblox.com/asset/?id=196263721'
+        
+        local Blur1 = Instance.new('BlurEffect', Lighting)
+        Blur1.Size = 2
+        
+        local ColorCorrection1 = Instance.new('ColorCorrectionEffect', Lighting)
+        ColorCorrection1.Saturation = 0.05
+        ColorCorrection1.TintColor = Color3.fromRGB(255, 224, 219)
+        
+        local SunRays1 = Instance.new('SunRaysEffect', Lighting)
+        SunRays1.Intensity = 0.05
+        
+        local Sky2 = Instance.new('Sky', Lighting)
+        Sky2.SkyboxUp = 'rbxassetid://323493360'
+        Sky2.SkyboxLf = 'rbxassetid://323494252'
+        Sky2.SkyboxBk = 'rbxassetid://323494035'
+        Sky2.SkyboxFt = 'rbxassetid://323494130'
+        Sky2.SkyboxDn = 'rbxassetid://323494368'
+        Sky2.SunAngularSize = 14
+        Sky2.SkyboxRt = 'rbxassetid://323494067'
+        
+        Lighting.Brightness = 3.5
+        Lighting.ColorShift_Bottom = Color3.fromRGB(11, 0, 20)
+        Lighting.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+        Lighting.OutdoorAmbient = Color3.fromRGB(34, 0, 49)
+        Lighting.ClockTime = 6.7
+        Lighting.FogColor = Color3.fromRGB(94, 76, 106)
+        Lighting.FogEnd = 1000
+        Lighting.FogStart = 0
+        Lighting.ExposureCompensation = 0.24
+        Lighting.ShadowSoftness = 0
+        Lighting.Ambient = Color3.fromRGB(59, 33, 27)
+        
+    elseif ShaderType == 'Fullbright New' then
+        local Bloom2 = Instance.new('BloomEffect', Lighting)
+        Bloom2.Intensity = 0.1
+        Bloom2.Threshold = 0
+        Bloom2.Size = 100
+        
+        local Sky3 = Instance.new('Sky', Lighting)
+        Sky3.SkyboxUp = 'rbxassetid://323493360'
+        Sky3.SkyboxLf = 'rbxassetid://323494252'
+        Sky3.SkyboxBk = 'rbxassetid://323494035'
+        Sky3.SkyboxFt = 'rbxassetid://323494130'
+        Sky3.SkyboxDn = 'rbxassetid://323494368'
+        Sky3.SunAngularSize = 14
+        Sky3.SkyboxRt = 'rbxassetid://323494067'
+        
+        Lighting.Brightness = 2
+        Lighting.ColorShift_Bottom = Color3.fromRGB(250, 250, 250)
+        Lighting.ColorShift_Top = Color3.fromRGB(250, 250, 250)
+        Lighting.OutdoorAmbient = Color3.fromRGB(150, 150, 150)
+        Lighting.ClockTime = 10
+        Lighting.FogColor = Color3.fromRGB(20, 20, 20)
+        Lighting.FogEnd = 10000
+        Lighting.FogStart = 0
+        Lighting.ExposureCompensation = 0.5
+        Lighting.ShadowSoftness = 0
+        Lighting.Ambient = Color3.fromRGB(50, 50, 50)
+        
+    elseif ShaderType == 'Desert New' then
+        local Bloom3 = Instance.new('BloomEffect', Lighting)
+        Bloom3.Intensity = 0.1
+        Bloom3.Threshold = 0
+        Bloom3.Size = 100
+        
+        local Sky4 = Instance.new('Sky', Lighting)
+        Sky4.SkyboxUp = 'rbxassetid://323493360'
+        Sky4.SkyboxLf = 'rbxassetid://323494252'
+        Sky4.SkyboxBk = 'rbxassetid://323494035'
+        Sky4.SkyboxFt = 'rbxassetid://323494130'
+        Sky4.SkyboxDn = 'rbxassetid://323494368'
+        Sky4.SunAngularSize = 14
+        Sky4.SkyboxRt = 'rbxassetid://323494067'
+        
+        Lighting.Brightness = 2.5
+        Lighting.ColorShift_Bottom = Color3.fromRGB(240, 120, 20)
+        Lighting.ColorShift_Top = Color3.fromRGB(240, 127, 14)
+        Lighting.OutdoorAmbient = Color3.fromRGB(100, 50, 10)
+        Lighting.ClockTime = 7
+        Lighting.FogColor = Color3.fromRGB(100, 55, 20)
+        Lighting.FogEnd = 1000
+        Lighting.FogStart = 0
+        Lighting.ExposureCompensation = 0.5
+        Lighting.ShadowSoftness = 0
+        Lighting.Ambient = Color3.fromRGB(80, 40, 10)
+    end
+end
+
+local function DisableShaders()
+    local Lighting = game:GetService("Lighting")
+    
+    for _, child in pairs(Lighting:GetChildren()) do
+        if child:IsA("PostEffect") or child:IsA("Sky") or child:IsA("Atmosphere") then
+            child:Destroy()
+        end
+    end
+    
+    Lighting.Brightness = 2
+    Lighting.ExposureCompensation = 0
+    Lighting.ClockTime = 14
+    Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+    Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
+    Lighting.OutdoorAmbient = Color3.fromRGB(200, 200, 200)
+    Lighting.FogColor = Color3.fromRGB(192, 192, 192)
+    Lighting.FogEnd = 100000
+    Lighting.FogStart = 0
+    Lighting.ShadowSoftness = 0
+    Lighting.Ambient = Color3.fromRGB(120, 120, 120)
+end
+
+
+local VisualTab = Window:CreateTab("Visual", 4483362458)
+local CameraSection = VisualTab:CreateSection("Camera Effects")
+
+local ShaderDropdown = VisualTab:CreateDropdown({
+    Name = "Shader Selection",
+    Options = {'Old', 'Purple New', 'Fullbright New', 'Desert New'},
+    CurrentOption = {'Old'},
+    Flag = "ShaderDropdown",
+    Callback = function(Option)
+        ShaderConfig.selected_shader = Option[1]
+        if ShaderConfig.shader_en then
+            ApplyShader(Option[1])
+        end
+    end,
+})
+
+local ShaderToggle = VisualTab:CreateToggle({
+    Name = "Enable Shaders",
+    CurrentValue = false,
+    Flag = "ShaderToggle",
+    Callback = function(Value)
+        ShaderConfig.shader_en = Value
+        
+        if Value then
+            if ShaderConfig.selected_shader ~= '' then
+                ApplyShader(ShaderConfig.selected_shader)
+                Rayfield:Notify({
+                    Title = "Shaders",
+                    Content = "Shader " .. tostring(ShaderConfig.selected_shader) .. " applied",
+                    Duration = 3,
+                    Image = 4483362458,
+                })
+            else
+                Rayfield:Notify({
+                    Title = "Warning",
+                    Content = "Please select a shader first",
+                    Duration = 3,
+                    Image = 4483362458,
+                })
+            end
+        else
+            DisableShaders()
+            Rayfield:Notify({
+                Title = "Shaders",
+                Content = "Shaders disabled",
+                Duration = 3,
+                Image = 4483362458,
+            })
+        end
+    end,
+})
+
+VisualTab:CreateButton({
+    Name = "Reset to Default",
+    Callback = function()
+        ShaderConfig.shader_en = false
+        ShaderToggle:Set(false)
+        DisableShaders()
+        Rayfield:Notify({
+            Title = "Reset",
+            Content = "Lighting reset to default",
+            Duration = 3,
+            Image = 4483362458,
+        })
+    end,
+})
